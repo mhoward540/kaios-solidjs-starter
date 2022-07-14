@@ -78,7 +78,7 @@ export default {
       ],
       plugins: [
         '@babel/plugin-syntax-dynamic-import',
-        'babel-plugin-transform-async-to-promises',
+        ["babel-plugin-transform-async-to-promises", { externalHelpers: true }],
         [
           '@babel/plugin-transform-runtime',
           {
