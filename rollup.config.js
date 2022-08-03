@@ -51,8 +51,8 @@ export default {
       runtimeHelpers: true,
       exclude: ['node_modules/@babel/**'],
       presets: [
-          'solid',
-          [
+        'solid',
+        [
           '@babel/preset-env',
           {
             targets: { firefox: '48' },
