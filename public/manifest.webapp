@@ -1,7 +1,7 @@
 {
-  "id": "com.garredow.svelte-starter",
-  "name": "Svelte App",
-  "description": "A starter template for Svelte and TypeScript.",
+  "id": "com.mhoward540.solidjs-starter",
+  "name": "SolidJS App",
+  "description": "A starter template for SolidJS and TypeScript.",
   "version": "0.1.0",
   "launch_path": "/index.html",
   "icons": {
@@ -12,8 +12,8 @@
   },
   "theme_color": "#FFFFFF",
   "developer": {
-    "name": "Garrett Downs",
-    "url": "https://garrettdowns.com"
+    "name": "Matt Howard",
+    "url": "https://github.com/mhoward540"
   },
   "type": "privileged",
   "default_locale": "en"

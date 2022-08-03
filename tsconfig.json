@@ -1,6 +1,36 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
-  "compilerOptions": { "resolveJsonModule": true },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "sourceMap": true,
+    "strict": true,
+    "importHelpers": false,
+    "baseUrl": "./src",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": false,
+    "jsxImportSource": "solid-js",
+    "checkJs": false,
+    "noEmit": true,
+    "moduleResolution": "Node",
+    "lib": [
+      "DOM"
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
+    "removeComments": true
+  },
 }
+

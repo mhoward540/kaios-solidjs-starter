@@ -1,14 +1,12 @@
-import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-css-only';
 import babel from 'rollup-plugin-babel';
 import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
+import postcss from 'rollup-plugin-postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -34,7 +32,7 @@ function serve() {
 }
 
 export default {
-  input: 'src/main.ts',
+  input: 'src/index.tsx',
   output: {
     sourcemap: !production,
     format: 'iife',
@@ -43,31 +41,17 @@ export default {
   },
   context: 'window',
   plugins: [
-    svelte({
-      preprocess: sveltePreprocess({
-        sourceMap: !production,
-        typescript: {
-          compilerOptions: {
-            target: 'ES2015',
-            module: 'ES2015',
-          },
-        },
-        replace: [[/process\.env\.(\w+)/g, (_, prop) => JSON.stringify(process.env[prop])]],
-      }),
-      compilerOptions: {
-        // enable run-time checks when not in production
-        dev: !production,
-      },
+    postcss({
+      sourceMap: true,
+      extract: 'bundle.css',
+      minimize: true,
     }),
-    // we'll extract any component CSS out into
-    // a separate file - better for performance
-    css({ output: 'bundle.css' }),
-
     babel({
-      extensions: ['.js', '.ts', '.mjs', '.html', '.svelte'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.html'],
       runtimeHelpers: true,
       exclude: ['node_modules/@babel/**'],
       presets: [
+        'solid',
         [
           '@babel/preset-env',
           {
@@ -102,8 +86,7 @@ export default {
     // consult the documentation for details:
     // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
-      browser: true,
-      dedupe: ['svelte'],
+      browser: true
     }),
     commonjs(),
     typescript({
